@@ -15,17 +15,17 @@ public class SortierenTest {
 		Container[] a = GetContainerArrayFromIntegerArray( new Integer[] { 20, 54, 28, 31, 5, 24, 39, 14, 1, 15 } );
 		Container[] atest = GetContainerArrayFromIntegerArray( new Integer[] { 1, 5, 14, 15, 20, 24, 28, 31, 39, 54 } );
 		
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.RECHTS);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.RECHTS);
 		assertTrue("Pivotrechts Fehler", Arrays.equals(a, atest));
 
 		Container[] b = GetContainerArrayFromIntegerArray( new Integer[] { 54, 20 } );
 		Container[] btest = GetContainerArrayFromIntegerArray( new Integer[] { 20, 54 } );
-		QuickThreadsort.ultisort(b, 0, b.length - 1, Pivotsuchverfahren.RECHTS);
+		QuickThreadsort.sort(b, 0, b.length - 1, Pivotsuchverfahren.RECHTS);
 		assertTrue("Pivotrechts Fehler", Arrays.equals(b, btest));
 
 		Container[] c = GetContainerArrayFromIntegerArray( new Integer[] { 6, 20, 65, 100 } );
 		Container[] ctest = GetContainerArrayFromIntegerArray( new Integer[] { 6, 20, 65, 100 } );
-		QuickThreadsort.ultisort(c, 0, c.length - 1, Pivotsuchverfahren.RECHTS);
+		QuickThreadsort.sort(c, 0, c.length - 1, Pivotsuchverfahren.RECHTS);
 		assertTrue("Pivotrechts Fehler", Arrays.equals(c, ctest));
 
 	}
@@ -34,17 +34,17 @@ public class SortierenTest {
 	public void pivotMedian() throws Exception {
 		Container[] a = GetContainerArrayFromIntegerArray( new Integer[] { 20, 54, 28, 31, 5, 24, 39, 14, 1, 15 } );
 		Container[] atest = GetContainerArrayFromIntegerArray( new Integer[] { 1, 5, 14, 15, 20, 24, 28, 31, 39, 54 } );
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.MEDIAN);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.MEDIAN);
 		assertTrue("Pivotmdeian Fehler", Arrays.equals(a, atest));
 
 		Container[] b = GetContainerArrayFromIntegerArray( new Integer[] { 54, 20 } );
 		Container[] btest = GetContainerArrayFromIntegerArray( new Integer[] { 20, 54 } );
-		QuickThreadsort.ultisort(b, 0, b.length - 1, Pivotsuchverfahren.MEDIAN);
+		QuickThreadsort.sort(b, 0, b.length - 1, Pivotsuchverfahren.MEDIAN);
 		assertTrue("Pivotmdeian Fehler", Arrays.equals(b, btest));
 
 		Container[] c = GetContainerArrayFromIntegerArray( new Integer[] { 6, 20, 65, 100 } );
 		Container[] ctest = GetContainerArrayFromIntegerArray( new Integer[] { 6, 20, 65, 100 } );
-		QuickThreadsort.ultisort(c, 0, c.length - 1, Pivotsuchverfahren.MEDIAN);
+		QuickThreadsort.sort(c, 0, c.length - 1, Pivotsuchverfahren.MEDIAN);
 		assertTrue("Pivotmdeian Fehler", Arrays.equals(c, ctest));
 	}
 
@@ -52,17 +52,17 @@ public class SortierenTest {
 	public void pivotZufaellig() throws Exception {
 		Container[] a = GetContainerArrayFromIntegerArray( new Integer[] { 20, 54, 28, 31, 5, 24, 39, 14, 1, 15 } );
 		Container[] atest = GetContainerArrayFromIntegerArray( new Integer[] { 1, 5, 14, 15, 20, 24, 28, 31, 39, 54 } );
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.ZUFAELLIG);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.ZUFAELLIG);
 		assertTrue("Pivotzufaellig Fehler", Arrays.equals(a, atest));
 
 		Container[] b = GetContainerArrayFromIntegerArray( new Integer[] { 54, 20 } );
 		Container[] btest = GetContainerArrayFromIntegerArray( new Integer[] { 20, 54 } );
-		QuickThreadsort.ultisort(b, 0, b.length - 1, Pivotsuchverfahren.ZUFAELLIG);
+		QuickThreadsort.sort(b, 0, b.length - 1, Pivotsuchverfahren.ZUFAELLIG);
 		assertTrue("Pivotzufaellig Fehler", Arrays.equals(b, btest));
 
 		Container[] c = GetContainerArrayFromIntegerArray( new Integer[] { 6, 20, 65, 100 } );
 		Container[] ctest = GetContainerArrayFromIntegerArray( new Integer[] { 6, 20, 65, 100 } );
-		QuickThreadsort.ultisort(c, 0, c.length - 1, Pivotsuchverfahren.ZUFAELLIG);
+		QuickThreadsort.sort(c, 0, c.length - 1, Pivotsuchverfahren.ZUFAELLIG);
 		assertTrue("Pivotzufaellig Fehler", Arrays.equals(c, ctest));
 	}
 
@@ -70,11 +70,11 @@ public class SortierenTest {
 	public void einElement() throws Exception {
 		Container[] a = GetContainerArrayFromIntegerArray( new Integer[] { 20 } );
 		Container[] atest = GetContainerArrayFromIntegerArray( new Integer[] { 20 } );
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.ZUFAELLIG);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.ZUFAELLIG);
 		assertTrue("ein Element Fehler zufall", Arrays.equals(a, atest));
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.MEDIAN);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.MEDIAN);
 		assertTrue("ein Element Fehler median", Arrays.equals(a, atest));
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.RECHTS);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.RECHTS);
 		assertTrue("ein Element Fehler rechts", Arrays.equals(a, atest));
 	}
 
@@ -82,18 +82,18 @@ public class SortierenTest {
 	public void keinElement() throws Exception {
 		Container[] a = GetContainerArrayFromIntegerArray( new Integer[] {} );
 		Container[] atest = GetContainerArrayFromIntegerArray( new Integer[] {} );
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.ZUFAELLIG);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.ZUFAELLIG);
 		assertTrue("ein Element Fehler zufall", Arrays.equals(a, atest));
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.MEDIAN);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.MEDIAN);
 		assertTrue("ein Element Fehler median", Arrays.equals(a, atest));
-		QuickThreadsort.ultisort(a, 0, a.length - 1, Pivotsuchverfahren.RECHTS);
+		QuickThreadsort.sort(a, 0, a.length - 1, Pivotsuchverfahren.RECHTS);
 		assertTrue("ein Element Fehler rechts", Arrays.equals(a, atest));
 	}
 
 	@Test
 	public void leereListe() {
 		try {
-			QuickThreadsort.ultisort(null, 0, 0, Pivotsuchverfahren.ZUFAELLIG);
+			QuickThreadsort.sort(null, 0, 0, Pivotsuchverfahren.ZUFAELLIG);
 			assertTrue("Fehler: Es wurde keine Exception geworfen!", false);
 		} catch (Exception e) {
 			// Alles richtig
@@ -114,7 +114,7 @@ public class SortierenTest {
 		{
 			try
 			{
-				QuickThreadsort.ultisort(arr,0,testValues[i]-1, pivot);
+				QuickThreadsort.sort(arr,0,testValues[i]-1, pivot);
 			}
 			catch (StackOverflowError e)
 			{
@@ -139,7 +139,7 @@ public class SortierenTest {
 		{
 			try
 			{
-				QuickThreadsort.ultisort(arr,0,testValues[i]-1, pivot);
+				QuickThreadsort.sort(arr,0,testValues[i]-1, pivot);
 			}
 			catch (StackOverflowError e)
 			{

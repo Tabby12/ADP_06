@@ -64,7 +64,7 @@ public class QuickThreadsort extends Thread {
 			
 			time = System.nanoTime();
 			
-			ultisort(containerArr2, 0, containerArr2.length - 1, Pivotsuchverfahren.MEDIAN);
+			sort(containerArr2, 0, containerArr2.length - 1, Pivotsuchverfahren.MEDIAN);
 			
 			time2 = System.nanoTime() - time;
 			
@@ -78,26 +78,33 @@ public class QuickThreadsort extends Thread {
 			}
 			averageTimeTwoTotal += time2;
 		}
+		
+		minTimeOne /= 1000f;
+		minTimeTwo /= 1000f;
+		maxTimeOne /= 1000f;
+		maxTimeTwo /= 1000f;
+		averageTimeOneTotal /= 1000f;
+		averageTimeTwoTotal  /= 1000f;
 
 		System.out.println("Quicksort");
-		System.out.println("Min: " + minTimeOne);
-		System.out.println("Max: " + maxTimeOne);
+		System.out.println("Min: " + minTimeOne + " microseconds");
+		System.out.println("Max: " + maxTimeOne + " microseconds");
 		long averageTimeOne = (long) (averageTimeOneTotal / (float)numberOfRuns);
-		System.out.println("Average: " + averageTimeOne);
+		System.out.println("Average: " + averageTimeOne + " microseconds");
 
 		System.out.println();
 
-		System.out.println("Ultisort");
-		System.out.println("Min: " + minTimeTwo);
-		System.out.println("Max: " + maxTimeTwo);
+		System.out.println("QuickThreadsort");
+		System.out.println("Min: " + minTimeTwo + " microseconds");
+		System.out.println("Max: " + maxTimeTwo + " microseconds");
 		long averageTimeTwo = (long) (averageTimeTwoTotal / (float)numberOfRuns);
-		System.out.println("Average: " + averageTimeTwo);
+		System.out.println("Average: " + averageTimeTwo + " microseconds");
 		
 		System.out.println();
 
-		System.out.println("Ultisort min takes " + (long) ((minTimeTwo / (float)minTimeOne) * 100f) + "% of quicksort time");
-		System.out.println("Ultisort max takes " + (long) ((maxTimeTwo / (float)maxTimeOne) * 100f) + "% of quicksort time");
-		System.out.println("Ultisort average takes " + (long) ((averageTimeTwo / (float)averageTimeOne) * 100f) + "% of quicksort time");
+		System.out.println("QuickThreadsort min takes " + (long) ((minTimeTwo / (float)minTimeOne) * 100f) + "% of quicksort time");
+		System.out.println("QuickThreadsort max takes " + (long) ((maxTimeTwo / (float)maxTimeOne) * 100f) + "% of quicksort time");
+		System.out.println("QuickThreadsort average takes " + (long) ((averageTimeTwo / (float)averageTimeOne) * 100f) + "% of quicksort time");
 	}
 	
 	@Override
@@ -116,12 +123,12 @@ public class QuickThreadsort extends Thread {
 
 			try {
 				// Sortieren �ber rekursive Aufrufe
-				ultiQuicksort(array, links, p, v);
+				insertionQuicksort(array, links, p, v);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 			}
 			try {
-				ultiQuicksort(array, q, rechts, v);
+				insertionQuicksort(array, q, rechts, v);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 			}
@@ -151,7 +158,7 @@ public class QuickThreadsort extends Thread {
 	 * @throws Exception
 	 * 
 	 */
-	public static void ultisort(Container[] array, int links, int rechts, Pivotsuchverfahren v) throws Exception {
+	public static void sort(Container[] array, int links, int rechts, Pivotsuchverfahren v) throws Exception {
 		if (array == null) {
 			throw new Exception();
 		}
@@ -177,7 +184,7 @@ public class QuickThreadsort extends Thread {
 			}
 			else
 			{
-				ultiQuicksort(array, links, rechts, v);
+				insertionQuicksort(array, links, rechts, v);
 			}
 		}
 		
@@ -193,7 +200,7 @@ public class QuickThreadsort extends Thread {
 	 * @param v
 	 * @throws Exception
 	 */
-	public static void ultiQuicksort(Container[] array, int links, int rechts, Pivotsuchverfahren v) throws Exception {
+	public static void insertionQuicksort(Container[] array, int links, int rechts, Pivotsuchverfahren v) throws Exception {
 
 		if (array == null) {
 			throw new Exception("array darf nicht null sein");
@@ -212,8 +219,8 @@ public class QuickThreadsort extends Thread {
 				q = pq[1];
 
 				// sortiere die Partitionen rekursiv
-				ultiQuicksort(array, links, p, v);
-				ultiQuicksort(array, q, rechts, v);
+				insertionQuicksort(array, links, p, v);
+				insertionQuicksort(array, q, rechts, v);
 			}
 			else
 			{
