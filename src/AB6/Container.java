@@ -22,4 +22,13 @@ public class Container {
 	{
 		return _obj;
 	}
+
+	@Override
+	public boolean equals(Object other){
+	    if (other == null) return false;
+	    if (other == this) return true;
+	    if (!(other instanceof Container))return false;
+	    Container otherContainer = (Container)other;
+	    return otherContainer._key == this._key;
+	}
 }

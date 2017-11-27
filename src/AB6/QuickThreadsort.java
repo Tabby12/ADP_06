@@ -24,51 +24,81 @@ public class QuickThreadsort extends Thread {
 	 * @throws Exception
 	 */
 	public static void main(String args[]) throws Exception {
+		int size = 100000;
+		
+		long minTimeOne = Long.MAX_VALUE;
+		long minTimeTwo = Long.MAX_VALUE;
 
-		int size = 10000;
-		Container[] containerArr = erzeugeWerte(size);
-		Container[] containerArr2 = new Container[size];
+		long maxTimeOne = Long.MIN_VALUE;
+		long maxTimeTwo = Long.MIN_VALUE;
+
+		long averageTimeOneTotal = 0L;
+		long averageTimeTwoTotal = 0L;
+
+		int numberOfRuns = 100;
+
+		for(int r=0; r<numberOfRuns; r++)
+		{
+			Container[] containerArr = erzeugeWerte(size);
+			Container[] containerArr2 = new Container[size];
 			for (int i = 0; i < size; i++)
 			{
 				containerArr2[i] = containerArr[i];
 			}
 
-		
-
-			System.out.println("Quicksort:");
 			Quicksort qsort = new Quicksort();
 			
 			long time = System.nanoTime();
 			qsort.quicksort(containerArr, 0, containerArr.length - 1, Pivotsuchverfahren.MEDIAN);
 			long time2 = System.nanoTime() - time;
 			
-
-//			for (int i = 0; i < containerArr.length; i++) {
-//				System.out.print(containerArr[i].getKey() + " ");
-//			}
-			System.out.println();
-			System.out.println("Die vergangene Zeit ist " + time2);
-			
-			//Zeitmessung f�r Quicksort ende
-			
-			//Zeitmessung f�r Ultisort 
-			//Threadsort a = new Threadsort(containerArr2, 0, containerArr2.length - 1, Pivotsuchverfahren.MEDIAN);
-
-			System.out.println("Ultisort:");
+			if(time2 < minTimeOne)
+			{
+				minTimeOne = time2;
+			}
+			if(time2 > maxTimeOne)
+			{
+				maxTimeOne = time2;
+			}
+			averageTimeOneTotal += time2;
 			
 			time = System.nanoTime();
+			
 			ultisort(containerArr2, 0, containerArr2.length - 1, Pivotsuchverfahren.MEDIAN);
+			
 			time2 = System.nanoTime() - time;
 			
-//			for (int i = 0; i < containerArr2.length; i++) {
-//				System.out.print(containerArr2[i].getKey() + " ");
-//			}
-			System.out.println();
-			System.out.println("Die vergangene Zeit ist " + time2);
-			//Zeitmessung f�r Quicksort ende
-//		}
+			if(time2 < minTimeTwo)
+			{
+				minTimeTwo = time2;
+			}
+			if(time2 > maxTimeTwo)
+			{
+				maxTimeTwo = time2;
+			}
+			averageTimeTwoTotal += time2;
 		}
 
+		System.out.println("Quicksort");
+		System.out.println("Min: " + minTimeOne);
+		System.out.println("Max: " + maxTimeOne);
+		long averageTimeOne = (long) (averageTimeOneTotal / (float)numberOfRuns);
+		System.out.println("Average: " + averageTimeOne);
+
+		System.out.println();
+
+		System.out.println("Ultisort");
+		System.out.println("Min: " + minTimeTwo);
+		System.out.println("Max: " + maxTimeTwo);
+		long averageTimeTwo = (long) (averageTimeTwoTotal / (float)numberOfRuns);
+		System.out.println("Average: " + averageTimeTwo);
+		
+		System.out.println();
+
+		System.out.println("Ultisort min takes " + (long) ((minTimeTwo / (float)minTimeOne) * 100f) + "% of quicksort time");
+		System.out.println("Ultisort max takes " + (long) ((maxTimeTwo / (float)maxTimeOne) * 100f) + "% of quicksort time");
+		System.out.println("Ultisort average takes " + (long) ((averageTimeTwo / (float)averageTimeOne) * 100f) + "% of quicksort time");
+	}
 	
 	@Override
 	public void run() {
